@@ -209,6 +209,23 @@ catalogue will be applied, file will be now on the agent
  info.txt will be there
 
 *****************************
+To reduce the time taken by the puppet to pull catalogue from server, we can reduce the time interval from 30 mins to desirable time.
+go to Puppet agent
+cd /etc/puppetlabs/puppet/puppet.conf
+add the following line
+
+i (insert mode)
+runinterval=1
+Esc wq!
+
+puppet agent --configprint all | grep -i runinterval
+
+the above command will whether new time interval is updated
+
+restart the puppet agent
+exec bash -l
+systemctl start puppet
+******************************
 
 Lets add package and service in the site.pp
 
