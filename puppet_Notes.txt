@@ -160,8 +160,10 @@ Go to Server
 cd /opt/puppetlabs/server/data/puppetserver
 cd yaml
 facts will be available here.
+cat ip-172-31-9-221.us-east-2.compute.internal.yml => this file consists all the details like OS, RAM, etc.
+------------------------------------------------------------------------------------------------------------------
 
-Wite puppet code in puppetServer, code is written in declarative scripting language
+Write puppet code in puppetServer, code is written in declarative scripting language
 
 **********************
 
