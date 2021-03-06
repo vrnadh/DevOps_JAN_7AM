@@ -155,6 +155,12 @@ Now catalogue will be applied.
 
 ******************************
 
+Go to Server
+**************
+cd /opt/puppetlabs/server/data/puppetserver
+cd yaml
+facts will be available here.
+
 Wite puppet code in puppetServer, code is written in declarative scripting language
 
 **********************
