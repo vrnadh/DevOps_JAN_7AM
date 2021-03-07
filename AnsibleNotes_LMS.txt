@@ -249,3 +249,64 @@ docker deplyment
     command: docker run -itd -P deployimage:ansible
 
 *****************************************
+
+Roles
+------
+
+# su ec2-user
+# cd /etc/ansible
+# ls
+
+you should roles folder
+create a new folder called tomcat
+
+# cd roles
+# mkdir tomcat
+# create the subfolder structure like below
+# cd tomcat
+# sudo mkdir files handlers vars tasks meta
+
+now, goto each folder and create main.yml
+# cd tasks
+# vim main.yml
+
+copy paste the tasks from above playbook.yml file
+- name: install docker
+    yum: name=docker state=present
+  - name: start docker
+    service: name=docker state=started
+  - name: install git
+    yum: name=git state=present
+  - name: get the dockerfile from githib
+    git: repo=https://github.com/Sonal0409/dockerdemo.git dest=/tmp/gitrepo
+  - name: build dockerfile
+    command: chdir=/tmp/gitrepo docker build -t deployimage:ansible .
+  - name: run the dockerfile
+    command: docker run -itd -P deployimage:ansible
+  Esc
+  :wq!
+  
+  install the tree package which will show the files in tree structure
+  # yum install tree -y
+  
+  the following command shows the files in tree structure
+  # tree
+  
+  create a new playbook.yml
+  # vim playbook-roles.yml
+  
+  copy the following content. tomcat is the folder created with different subfolders
+  ----
+  - hosts: webservers
+  become: true
+  become_user: root
+  roles:
+   - tomcat
+  -----
+  
+ Now, check the syntax and run the playbook
+ # ansible-playbook playbook-roles.yml --syntax-check
+ # ansible-playbook playbook-roles.yml
+ 
+ this will do the same job what the other yml does.
+  
